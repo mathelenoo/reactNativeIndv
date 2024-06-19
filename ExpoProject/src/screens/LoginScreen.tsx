@@ -1,43 +1,45 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import React from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
-  const [email, setEmail] = useState('');
 
   const handleLoginPress = () => {
-    // Verifica se o email contém '@'
-    if (email.includes('@')) {
-      // Navegar para a tela Home após o login
-      navigation.navigate('Home');
-    } else {
-      Alert.alert('Email Inválido', 'Por favor, insira um email válido.');
-    }
+    
+    navigation.navigate('Home'); // Exemplo de navegação para a tela Home após o login
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Email:</Text>
+      <Text style={styles.title}>Login</Text>
+      
+      {/* Campos de Email e Senha */}
       <TextInput
         style={styles.input}
-        placeholder="Digite seu email"
+        placeholder="Email"
         keyboardType="email-address"
         autoCapitalize="none"
-        onChangeText={setEmail}
       />
-
-      <Text style={styles.label}>Senha:</Text>
       <TextInput
         style={styles.input}
-        placeholder="Digite sua senha"
+        placeholder="Senha"
         secureTextEntry
-        autoComplete="password"
       />
-
+      
+      {/* Botão de Login */}
       <TouchableOpacity style={styles.button} onPress={handleLoginPress}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
+      
+      {/* Rodapé */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Desenvolvido para a Residência em TIC - 2024.2 {'\n'}
+          {'\n'}
+          Matheus Heleno
+        </Text>
+      </View>
     </View>
   );
 };
@@ -49,9 +51,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
   },
-  label: {
-    fontSize: 18,
-    marginBottom: 10,
+  title: {
+    fontSize: 24,
+    marginBottom: 30,
   },
   input: {
     width: '100%',
@@ -60,7 +62,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderRadius: 5,
     paddingHorizontal: 10,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   button: {
     width: '100%',
@@ -69,10 +71,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 10,
   },
   buttonText: {
     fontSize: 18,
     color: '#fff',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 20,
+    width: '100%',
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 12,
+    color: '#888',
+    textAlign: 'center',
   },
 });
 

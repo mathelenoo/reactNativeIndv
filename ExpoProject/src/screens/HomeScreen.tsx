@@ -19,7 +19,7 @@ const HomeScreen: React.FC = () => {
           text: 'Sair',
           onPress: () => {
             navigation.navigate('Login'); // Navega de volta para a tela de login
-            // Implemente aqui qualquer lógica adicional de logout, como limpar o estado do usuário
+            
           },
         },
       ],
@@ -39,6 +39,15 @@ const HomeScreen: React.FC = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogoutPress}>
         <Text style={styles.buttonText}>Sair</Text>
       </TouchableOpacity>
+      
+      {/* Rodapé */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Desenvolvido para a Residência em TIC - 2024.2 {'\n'}
+          {'\n'}
+          Matheus Heleno
+        </Text>
+      </View>
     </View>
   );
 };
@@ -67,10 +76,22 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 20,
   },
   buttonText: {
     fontSize: 18,
     color: '#fff',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 20,
+    width: '100%',
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 12,
+    color: '#888',
+    textAlign: 'center',
   },
 });
 
