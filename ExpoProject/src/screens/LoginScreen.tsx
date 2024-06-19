@@ -1,17 +1,19 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
 
   const handleLoginPress = () => {
-    
     navigation.navigate('Home'); // Exemplo de navegação para a tela Home após o login
   };
 
   return (
     <View style={styles.container}>
+      {/* Imagem acima da palavra "Login" */}
+      <Image source={require('../assets/login-image.png')} style={styles.loginImage} />
+      
       <Text style={styles.title}>Login</Text>
       
       {/* Campos de Email e Senha */}
@@ -50,6 +52,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+  },
+  loginImage: {
+    width: '32%',
+    height: 150,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,
