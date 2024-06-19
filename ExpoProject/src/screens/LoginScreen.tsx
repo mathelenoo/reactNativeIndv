@@ -1,12 +1,31 @@
-import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image } from 'react-native';
+// src/screens/LoginScreen.tsx
+
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen: React.FC = () => {
   const navigation = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLoginPress = () => {
-    navigation.navigate('Home'); // Exemplo de navegação para a tela Home após o login
+    if (!email.trim()) {
+      Alert.alert('Erro', 'Por favor, informe um email válido.');
+      return;
+    }
+
+    if (!email.includes('@')) {
+      Alert.alert('Erro', 'O email informado não é válido.');
+      return;
+    }
+
+    if (!password.trim()) {
+      Alert.alert('Erro', 'Por favor, informe sua senha.');
+      return;
+    }
+
+    navigation.navigate('Home'); // Navega para a tela Home após o login bem-sucedido
   };
 
   return (
@@ -16,17 +35,23 @@ const LoginScreen: React.FC = () => {
       
       <Text style={styles.title}>Login</Text>
       
-      {/* Campos de Email e Senha */}
+      {/* Campo de Email */}
       <TextInput
         style={styles.input}
         placeholder="Email"
         keyboardType="email-address"
         autoCapitalize="none"
+        value={email}
+        onChangeText={setEmail}
       />
+      
+      {/* Campo de Senha */}
       <TextInput
         style={styles.input}
         placeholder="Senha"
         secureTextEntry
+        value={password}
+        onChangeText={setPassword}
       />
       
       {/* Botão de Login */}
@@ -37,9 +62,7 @@ const LoginScreen: React.FC = () => {
       {/* Rodapé */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Desenvolvido para a Residência em TIC - 2024.2 {'\n'}
-          {'\n'}
-          Matheus Heleno
+          Desenvolvido para a Residência em TIC - 2024.2 {'\n\n'} Matheus Heleno
         </Text>
       </View>
     </View>
